@@ -1,0 +1,52 @@
+#basket_box{
+    border-style: solid;
+    border-color: lightgrey;
+    border-radius: 5px;
+    width: 30%;
+    margin-left: 1%;
+    font-family: Calibri, sans-serif;
+}
+
+#remained_title, #bought_title, #products_remained, #bought_products{
+    border-top-style: solid;
+    border-top-color: lightgray;
+    border-top-width: 2px;
+    padding: 10px;
+}
+
+#remained_title, #bought_title{
+    font-weight: bold;
+}
+
+#products_remained, #bought_products{
+    display:flex;
+    flex-wrap: wrap;
+    align-items:center;
+    gap: 10px;
+}
+
+.basket_product{
+    position: relative;
+    margin-right: 5px;
+    text-align: left;
+    background-color: lightgray;
+    padding: 6px;
+    border-radius: 10px;
+}
+
+#basket_tomatoes{
+    text-decoration:line-through;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.basket_products_number{
+    background-color: orange;
+    color: white;
+    padding: 4px;
+    border-radius: 10px;
+}

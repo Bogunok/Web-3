@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="BoxForSelection.css"/>
+    <link rel="stylesheet" type="text/css" href="BoxForStatistics.css"/>
+    <link rel="stylesheet" type="text/css" href="Badge.css">
+    <title>Магазин</title>
+</head>
+<body>
+<section id="selection_box">
+    <section class="input_field">
+        <input type="text" id="search_bar" placeholder="Назва товару">
+        <button id="add_button" data-tooltip="Додати товар" onclick="addProduct()">Додати</button>
+    </section>
+    <section id="products">
+        <section class="product_panel">
+            <span class="product_name" onclick="editName(this)" style="text-decoration: line-through";>Помідори</span>
+            <div class="product_quantity">
+                <span class="counter">2</span>
+            </div>
+            <div class="product_purchase">
+                <button class="bought" data-tooltip="Товар куплено" onclick="unBuy(this)">Не куплено</button>
+            </div>
+        </section>
+        <section class="product_panel">
+            <span class="product_name" onclick="editName(this)">Печиво</span>
+            <div class="product_quantity">
+                <button class="minus_product" data-tooltip="Менше" onclick="subtractOne(this)" style="background-color:red; border-color: red;">-</button>
+                <span class="counter">2</span>
+                <button class="plus_product" data-tooltip="Більше" onclick="addOne(this)">+</button>
+            </div>
+            <div class="product_purchase">
+                <button class="bought" data-tooltip="Придбати" onclick="buy(this)">Куплено</button>
+                <button class="cancel" data-tooltip="Видалити товар" onclick="deleteSection(this)">Х</button>
+            </div>
+        </section>
+        <section class="product_panel">
+            <span class="product_name" onclick="editName(this)">Сир</span>
+            <div class="product_quantity">
+                <button class="minus_product" data-tooltip="Менше" onclick="subtractOne(this)">-</button>
+                <span class="counter">1</span>
+                <button class="plus_product" data-tooltip="Більше" onclick="addOne(this)">+</button>
+            </div>
+            <div class="product_purchase">
+                <button class="bought" data-tooltip="Придбати" onclick="buy(this)">Куплено</button>
+                <button class="cancel" data-tooltip="Видалити товар" onclick="deleteSection(this)">Х</button>
+            </div>
+        </section>
+    </section>
+</section>
+<section id="basket_box">
+    <section id="remained_title">
+        Залишилося
+    </section>
+    <section id="products_remained">
+                    <span class="basket_product">
+                        <span class="basket_product_name">Печиво</span>
+                        <span class="basket_products_number">2</span>
+                    </span>
+        <span class="basket_product">
+                        <span class="basket_product_name">Сир</span>
+                        <span class="basket_products_number">1</span>
+                    </span>
+    </section>
+    <section id="bought_title">
+        Куплено
+    </section>
+    <section id="bought_products">
+                     <span class="basket_product" id="basket_tomatoes">
+                         <span class="basket_product_name">Помідори</span>
+                    <span class="basket_products_number">2</span>
+                </span>
+    </section>
+</section>
+<script src="Shop.js"></script>
+<script>            let input = document.getElementById("search_bar");
+input.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        addProduct();
+        document.getElementById("search_bar").value = "";
+    }
+});
+</script>
+</body>
+<footer>
+    <section id="badge">
+        <span id="badge_title">Buy List</span>
+        <div id="created_by">
+            <span id="create_title">Created by:</span>
+            <span id="create_author">Bohun Yelyzaveta</span>
+        </div>
+    </section>
+    <section id="print_badge">
+        <div id="created_by_print">
+            <span id="create_title_print">Created by:</span>
+            <span id="create_author_print">Bohun Yelyzaveta</span>
+        </div>
+    </section>
+</footer>
+</html>

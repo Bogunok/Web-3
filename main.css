@@ -1,0 +1,42 @@
+#selection_box, #basket_box{
+    print-color-adjust:unset;
+    float: left;
+    box-sizing: border-box;
+    padding: 15px;
+    webkit-print-color-adjust: exact;
+}
+
+button {
+    position: relative;
+}
+
+button::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 100%;
+    transform: translateX(-25%);
+    background-color:rebeccapurple;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    pointer-events: none;
+    z-index: 5;
+}
+
+button:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+
+@media screen and (max-width: 500px) {
+    #selection_box, #basket_box {
+        float: none;
+        width: 100%;
+        margin: 0px;
+        margin-top: 20px;
+    }
+}
