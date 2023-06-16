@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="BoxForSelection.css"/>
     <link rel="stylesheet" type="text/css" href="BoxForStatistics.css"/>
     <link rel="stylesheet" type="text/css" href="Badge.css">
+    <script src="Shop.js"></script>
     <title>Магазин</title>
 </head>
 <body>
@@ -75,8 +76,9 @@
                 </span>
     </section>
 </section>
-<script src="Shop.js"></script>
-<script>            let input = document.getElementById("search_bar");
+
+<script>
+    let input = document.getElementById("search_bar");
 input.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         addProduct();
