@@ -1,50 +1,30 @@
 function addProduct(){
-
-
-
-    let input_product_name = document.getElementById("search_bar").value;
-
-    let names = document.getElementsByClassName("product_name");
-
+    let input = document.getElementById("search_bar").value;
+    let product_name = document.getElementsByClassName("product_name");
     let unique = true;
-
-    for(let i= 0; i<names.length; i++){
-        if(names[i].textContent === input_product_name){
+    for(let i= 0; i<product_name.length; i++){
+        if(product_name[i].textContent === input){
             unique=false;
             break;
         }
     }
 
     if(unique) {
-
-        let product_shop = document.getElementById("products");
-
+        let selection = document.getElementById("products");
         let newSection = document.createElement("section");
-
         newSection.className = "product_panel";
-
         let newProductName = document.createElement("span");
-
         newProductName.className = "product_name";
-
-        newProductName.innerHTML = input_product_name;
-
+        newProductName.innerHTML = input;
         newProductName.addEventListener("click", function () {
             editName(this);
         })
-
         let newProductQuantity = document.createElement("div");
-
         newProductQuantity.className = "product_quantity";
-
         let newMinusProduct = document.createElement("button");
-
         newMinusProduct.className = "minus_product";
-
         newMinusProduct.innerHTML = "-";
-
         newMinusProduct.dataset.tooltip = "Менше";
-
         newMinusProduct.addEventListener('click', function (){
             subtractOne(this);
         })
@@ -117,7 +97,7 @@ function addProduct(){
 
         newSection.appendChild(newProductPurchase);
 
-        product_shop.appendChild(newSection);
+        selection.appendChild(newSection);
 
         document.getElementById("search_bar").focus();
 
@@ -128,13 +108,13 @@ function addProduct(){
 
         let leftBox = document.getElementById("products_remained");
 
-        let newProductStat = document.createElement("span");
+        let newStatistics = document.createElement("span");
 
         let newProductStatName = document.createElement("span");
 
-        newProductStatName.innerText = input_product_name;
+        newProductStatName.innerText = input;
 
-        newProductStat.classList.add("basket_product");
+        newStatistics.classList.add("basket_product");
 
         newProductStatName.classList.add("basket_product_name");
 
@@ -144,11 +124,11 @@ function addProduct(){
 
         newProductCount.classList.add("basket_products_number");
 
-        newProductStat.appendChild(newProductStatName);
+        newStatistics.appendChild(newProductStatName);
 
-        newProductStat.appendChild(newProductCount);
+        newStatistics.appendChild(newProductCount);
 
-        leftBox.appendChild(newProductStat);
+        leftBox.appendChild(newStatistics);
     }
 }
 function deleteSection(button) {
