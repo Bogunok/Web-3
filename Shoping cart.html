@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="BoxForStatistics.css"/>
     <link rel="stylesheet" type="text/css" href="Badge.css">
     <script src="Shop.js"></script>
-    <title>Магазин</title>
+    <title>Кошик покупця</title>
 </head>
 <body>
 <section id="selection_box">
@@ -20,34 +20,34 @@
         <section class="product_panel">
             <span class="product_name" onclick="editName(this)" style="text-decoration: line-through";>Помідори</span>
             <div class="product_quantity">
-                <span class="counter">2</span>
+                <span class="number">2</span>
             </div>
             <div class="product_purchase">
-                <button class="bought" data-tooltip="Товар куплено" onclick="unBuy(this)">Не куплено</button>
+                <button class="bought" data-tooltip="Товар куплено" onclick="notToBuy(this)">Не куплено</button>
             </div>
         </section>
         <section class="product_panel">
             <span class="product_name" onclick="editName(this)">Печиво</span>
             <div class="product_quantity">
-                <button class="minus_product" data-tooltip="Менше" onclick="subtractOne(this)" style="background-color:red; border-color: red;">-</button>
-                <span class="counter">2</span>
-                <button class="plus_product" data-tooltip="Більше" onclick="addOne(this)">+</button>
+                <button class="minus" data-tooltip="Менше" onclick="minusProduct(this)" style="background-color:red; border-color: red;">-</button>
+                <span class="number">2</span>
+                <button class="plus" data-tooltip="Більше" onclick="plusProduct(this)">+</button>
             </div>
             <div class="product_purchase">
-                <button class="bought" data-tooltip="Придбати" onclick="buy(this)">Куплено</button>
-                <button class="cancel" data-tooltip="Видалити товар" onclick="deleteSection(this)">Х</button>
+                <button class="bought" data-tooltip="Придбати" onclick="buyProduct(this)">Куплено</button>
+                <button class="delete" data-tooltip="Видалити товар" onclick="deleteProduct(this)">Х</button>
             </div>
         </section>
         <section class="product_panel">
             <span class="product_name" onclick="editName(this)">Сир</span>
             <div class="product_quantity">
-                <button class="minus_product" data-tooltip="Менше" onclick="subtractOne(this)">-</button>
-                <span class="counter">1</span>
-                <button class="plus_product" data-tooltip="Більше" onclick="addOne(this)">+</button>
+                <button class="minus" data-tooltip="Менше" onclick="minusProduct(this)">-</button>
+                <span class="number">1</span>
+                <button class="plus" data-tooltip="Більше" onclick="plusProduct(this)">+</button>
             </div>
             <div class="product_purchase">
-                <button class="bought" data-tooltip="Придбати" onclick="buy(this)">Куплено</button>
-                <button class="cancel" data-tooltip="Видалити товар" onclick="deleteSection(this)">Х</button>
+                <button class="bought" data-tooltip="Придбати" onclick="buyProduct(this)">Куплено</button>
+                <button class="delete" data-tooltip="Видалити товар" onclick="deleteProduct(this)">Х</button>
             </div>
         </section>
     </section>
@@ -79,12 +79,12 @@
 
 <script>
     let input = document.getElementById("search_bar");
-input.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        addProduct();
-        document.getElementById("search_bar").value = "";
-    }
-});
+    input.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            addProduct();
+            document.getElementById("search_bar").value = "";
+        }
+    });
 </script>
 </body>
 <footer>

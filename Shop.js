@@ -1,50 +1,67 @@
 function addProduct(){
-    let input = document.getElementById("search_bar").value;
-    let product_name = document.getElementsByClassName("product_name");
+    let newProduct = document.getElementById("search_bar").value;
+
+    let productName = document.getElementsByClassName("product_name");
+
     let unique = true;
-    for(let i= 0; i<product_name.length; i++){
-        if(product_name[i].textContent === input){
+
+    for(let i= 0; i<productName.length; i++){
+        if(productName[i].textContent === newProduct){
             unique=false;
             break;
         }
     }
 
-    if(unique) {
-        let selection = document.getElementById("products");
+    if(unique && newProduct !== "") {
+
+        let product_shop = document.getElementById("products");
+
         let newSection = document.createElement("section");
+
         newSection.className = "product_panel";
+
         let newProductName = document.createElement("span");
+
         newProductName.className = "product_name";
-        newProductName.innerHTML = input;
+
+        newProductName.innerHTML = newProduct;
+
         newProductName.addEventListener("click", function () {
             editName(this);
         })
+
         let newProductQuantity = document.createElement("div");
+
         newProductQuantity.className = "product_quantity";
+
         let newMinusProduct = document.createElement("button");
-        newMinusProduct.className = "minus_product";
+
+        newMinusProduct.className = "minus";
+
         newMinusProduct.innerHTML = "-";
+
         newMinusProduct.dataset.tooltip = "Менше";
+
         newMinusProduct.addEventListener('click', function (){
-            subtractOne(this);
+            minusProduct(this);
         })
 
         let newCounter = document.createElement("span");
 
-        newCounter.className = "counter";
+        newCounter.className = "number";
 
         newCounter.innerHTML = "1";
 
         let newPlusProduct = document.createElement("button");
 
-        newPlusProduct.className = "plus_product";
+        newPlusProduct.className = "plus";
 
         newPlusProduct.innerHTML = "+";
 
         newPlusProduct.dataset.tooltip = "Більше";
 
         newPlusProduct.addEventListener('click', function (){
-            addOne(this);
+            plusProduct(this);
         })
 
         newCounter.style.marginRight = "4px";
@@ -64,19 +81,19 @@ function addProduct(){
         newBoughtButton.dataset.tooltip = "Придбати";
 
         newBoughtButton.addEventListener("click", function (){
-            buy(this);
+            buyProduct(this);
         });
 
         let newCancel = document.createElement("button");
 
-        newCancel.className = "cancel";
+        newCancel.className = "delete";
 
         newCancel.innerHTML = "Х";
 
         newCancel.dataset.tooltip = "Видалити товар";
 
         newCancel.addEventListener("click", function (){
-            deleteSection(this);
+            deleteProduct(this);
         });
 
         newCancel.style.marginLeft = "4px";
@@ -97,7 +114,7 @@ function addProduct(){
 
         newSection.appendChild(newProductPurchase);
 
-        selection.appendChild(newSection);
+        product_shop.appendChild(newSection);
 
         document.getElementById("search_bar").focus();
 
@@ -108,13 +125,13 @@ function addProduct(){
 
         let leftBox = document.getElementById("products_remained");
 
-        let newStatistics = document.createElement("span");
+        let newProductStat = document.createElement("span");
 
         let newProductStatName = document.createElement("span");
 
-        newProductStatName.innerText = input;
+        newProductStatName.innerText = newProduct;
 
-        newStatistics.classList.add("basket_product");
+        newProductStat.classList.add("basket_product");
 
         newProductStatName.classList.add("basket_product_name");
 
@@ -124,14 +141,14 @@ function addProduct(){
 
         newProductCount.classList.add("basket_products_number");
 
-        newStatistics.appendChild(newProductStatName);
+        newProductStat.appendChild(newProductStatName);
 
-        newStatistics.appendChild(newProductCount);
+        newProductStat.appendChild(newProductCount);
 
-        leftBox.appendChild(newStatistics);
+        leftBox.appendChild(newProductStat);
     }
 }
-function deleteSection(button) {
+function deleteProduct(button) {
     let section = button.closest("section");
     let name = section.getElementsByTagName("span");
     let statBox = document.getElementById("basket_box");
@@ -145,22 +162,22 @@ function deleteSection(button) {
     section.remove();
 }
 
-function buy(button){
+function buyProduct(button){
     button.innerHTML = "Не куплено";
     button.dataset.tooltip = "Товар куплено";
     button.removeEventListener("click", function (){
-        buy(this);
+        buyProduct(this);
     });
     button.addEventListener("click", function (){
-        unBuy(this);
+        notToBuy(this);
     });
     let closestDiv = button.closest("div");
-    let cancel = closestDiv.getElementsByClassName("cancel");
+    let cancel = closestDiv.getElementsByClassName("delete");
     cancel[0].remove();
     let closestSection = button.closest("section");
     let closestQuantity = closestSection.getElementsByClassName("product_quantity");
-    let closestMinus = closestQuantity[0].getElementsByClassName("minus_product");
-    let closestPlus = closestQuantity[0].getElementsByClassName("plus_product");
+    let closestMinus = closestQuantity[0].getElementsByClassName("minus");
+    let closestPlus = closestQuantity[0].getElementsByClassName("plus");
     closestMinus[0].remove();
     closestPlus[0].remove();
     let closestPanel = closestSection.closest("section");
@@ -181,7 +198,7 @@ function buy(button){
     }
 }
 
-function unBuy(button){
+function notToBuy(button){
 
     let section = button.closest("section");
     let name = section.getElementsByTagName("span");
@@ -197,37 +214,29 @@ function unBuy(button){
     }
 
     let closestDiv = button.closest("div");
-
-
     let closestSection = button.closest("section");
     let closestPanel = closestSection.closest("section");
     let closestName = closestPanel.getElementsByTagName("span");
     closestName[0].style.textDecoration = "none";
-
     button.remove();
-
     let newBoughtButton = document.createElement("button");
-
     newBoughtButton.className = "bought";
-
     newBoughtButton.innerHTML = "Куплено";
-
     newBoughtButton.dataset.tooltip = "Придбати";
-
     newBoughtButton.addEventListener("click", function (){
-        buy(this);
+        buyProduct(this);
     });
 
     let newCancel = document.createElement("button");
 
-    newCancel.className = "cancel";
+    newCancel.className = "delete";
 
     newCancel.innerHTML = "Х";
 
     newCancel.dataset.tooltip = "Видалити товар";
 
     newCancel.addEventListener("click", function (){
-        deleteSection(this);
+        deleteProduct(this);
     });
 
     newCancel.style.marginLeft = "4px";
@@ -237,31 +246,31 @@ function unBuy(button){
 
     let newPlusProduct = document.createElement("button");
 
-    newPlusProduct.className = "plus_product";
+    newPlusProduct.className = "plus";
 
     newPlusProduct.innerHTML = "+";
 
     newPlusProduct.dataset.tooltip = "Більше";
 
     newPlusProduct.addEventListener('click', function (){
-        addOne(this);
+        plusProduct(this);
     })
 
     let newMinusProduct = document.createElement("button");
 
-    newMinusProduct.className = "minus_product";
+    newMinusProduct.className = "minus";
 
     newMinusProduct.innerHTML = "-";
 
     newMinusProduct.dataset.tooltip = "Менше";
 
     newMinusProduct.addEventListener('click', function (){
-        subtractOne(this);
+        minusProduct(this);
     })
 
     let closestProductCounter = closestPanel.getElementsByClassName("product_quantity");
 
-    let closestCounter = closestProductCounter[0].getElementsByClassName("counter");
+    let closestCounter = closestProductCounter[0].getElementsByClassName("number");
 
     closestProductCounter[0].appendChild(newMinusProduct);
     closestProductCounter[0].appendChild(newPlusProduct);
@@ -273,10 +282,6 @@ function unBuy(button){
     closestCounter[0].style.marginLeft = "4px";
 
     isMoreThanOne(newMinusProduct);
-
-
-
-
 }
 
 function editName(name){
@@ -301,9 +306,19 @@ function editName(name){
 
             let newName = "";
 
-            if (unique) {
+            if (unique && newNameInput.value != "") {
 
                 newName = newNameInput.value;
+
+                let statBox = document.getElementById("basket_box");
+                let productStats = statBox.getElementsByClassName("basket_product");
+                for(let i= 0; i<productStats.length; i++){
+                    let productName = productStats[i].getElementsByClassName("basket_product_name");
+                    if (productName[0].innerText === initialName){
+                        productName[0].innerText = newName;
+                    }
+                }
+
             } else{
                 newName = initialName;
             }
@@ -322,14 +337,14 @@ function editName(name){
     }
 }
 
-function addOne(button){
+function plusProduct(button){
     let closestDiv = button.closest("div");
     let counter = closestDiv.getElementsByTagName("span");
     let currentNumber = parseInt(counter[0].innerText);
-    let minusButton = closestDiv.getElementsByClassName("minus_product");
+    let minusButton = closestDiv.getElementsByClassName("minus");
     if(currentNumber === 1){
-        minusButton[0].style.backgroundColor = "red";
-        minusButton[0].style.borderColor = "red";
+        minusButton[0].style.backgroundColor = "rgb(255 50 50)";
+        minusButton[0].style.borderColor = "rgb(255 50 50)";
     }
     let newNumber = currentNumber+1;
     counter[0].innerHTML = newNumber;
@@ -347,7 +362,7 @@ function addOne(button){
     }
 }
 
-function subtractOne(button){
+function minusProduct(button){
     let closestDiv = button.closest("div");
     let counter = closestDiv.getElementsByTagName("span");
     let currentNumber = parseInt(counter[0].innerText);

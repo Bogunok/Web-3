@@ -25,10 +25,10 @@
 #add_button{
     print-color-adjust: exact;
     width: 25%;
-    border-radius: 5px;
-    border-color: steelblue;
+
+    border-color: cornflowerblue;
     box-shadow: 0px 3px royalblue;
-    background-color:steelblue;
+    background-color: cornflowerblue;
 }
 
 .input_field, .product_panel {
@@ -48,14 +48,14 @@
 }
 
 
-.plus_product{
-    background-color: green;
-    border-color: green;
+.plus{
+    background-color: rgb(90 245 121);
+    border-color: rgb(90 245 121);
     color: white;
     border-radius: 14px;
 }
 
-.minus_product{
+.minus{
     background-color:lightcoral;
     border-color: lightcoral;
     color: white;
@@ -75,7 +75,7 @@
     text-align: right;
 }
 
-.counter{
+.number{
     background-color: lightgrey;
     padding: 5px;
     border-radius: 4px;
@@ -96,7 +96,7 @@
     box-shadow: 0px 3px darkgray;
 }
 
-.cancel{
+.delete{
     background-color: red;
     border-color: red;
     color: white;

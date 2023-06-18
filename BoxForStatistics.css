@@ -16,6 +16,7 @@
 
 #remained_title, #bought_title{
     font-weight: bold;
+    font-size: larger;
 }
 
 #products_remained, #bought_products{
@@ -48,5 +49,5 @@
     background-color: orange;
     color: white;
     padding: 4px;
-    border-radius: 10px;
+    border-radius: 14px;
 }
